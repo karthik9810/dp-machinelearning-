@@ -2,24 +2,23 @@ import streamlit as st
 import requests
 
 # Title of the app
-st.title('Random Jokes Generator')
+st.title('Random Quotes Generator')
 
-# Fetch a random joke from the API
-def get_random_joke():
-    response = requests.get('https://official-joke-api.appspot.com/random_joke')
+# Fetch a random quote from the API
+def get_random_quote():
+    response = requests.get('https://api.quotable.io/random')
     if response.status_code == 200:
-        joke = response.json()
-        return f"{joke['setup']} - {joke['punchline']}"
+        quote = response.json()
+        return f"\"{quote['content']}\" - {quote['author']}"
     else:
-        return "Failed to fetch a joke."
+        return "Failed to fetch a quote."
 
-# Display a button to get a new joke
-if st.button('Get a Random Joke'):
-    joke = get_random_joke()
-    st.write(joke)
+# Display a button to get a new quote
+if st.button('Get a Random Quote'):
+    quote = get_random_quote()
+    st.write(quote)
 else:
-    st.write('Click the button to get a random joke!')
+    st.write('Click the button to get a random quote!')
 
 # Footer
-st.write('Powered by the [Official Joke API](https://github.com/15Dkatz/official_joke_api)')
-
+st.write('Powered by the [Quotable API](https://github.com/lukePeavey/quotable)')
